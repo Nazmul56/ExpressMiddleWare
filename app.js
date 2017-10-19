@@ -1,17 +1,14 @@
-var express = require('express')
-var app = express()
+var express = require('express');
+var app = express();
 
-var requestTime = function (req, res, next) {
-  req.requestTime = Date.now()
-  next()
-}
+app.get('/hello', function(req, res){
+   res.send("Hello World!");
+});
 
-app.use(requestTime)
-
-app.get('/', function (req, res) {
-  var responseText = 'Hello World!<br>'
-  responseText += '<small>Requested at: ' + req.requestTime + '</small>'
-  res.send(responseText)
-})
-app.listen(8000)
-
+app.post('/hello', function(req, res){
+   res.send("You just called the post method at '/hello'!\n");
+});
+app.all('/test', function(req, res){
+   res.send("HTTP method doesn't have any effect on this route!");
+});
+app.listen(3000);
