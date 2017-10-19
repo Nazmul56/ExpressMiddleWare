@@ -1,11 +1,15 @@
 var express = require('express');
 var app = express();
 
-app.get('/things/:id([0-9]{5})', function(req, res){
-   res.send('id: ' + req.params.id);
+//Middleware function to log request protocol
+app.use('/things', function(req, res, next){
+   console.log("A request for things received at " + Date.now());
+   next();
 });
-//Other routes here
-app.get('*', function(req, res){
-   res.send('Sorry, this is an invalid URL.');
+
+// Route handler that sends the response
+app.get('/things', function(req, res){
+   res.send('Things');
 });
+
 app.listen(3000);
