@@ -1,0 +1,32 @@
+Express JS
+
+Instrusction
+
+node --version
+npm --version
+
+https://www.tutorialspoint.com/expressjs/expressjs_environment.htm
+
+Create a Directory
+
+mkdir NodeJs_Folder
+cd NodeJs_Folder
+
+npm init 
+npm install --save express
+ls node_modules # Show Modules
+
+Express Middle Ware Need nodemon
+
+
+npm install -g nodemon
+
+RUN app.js Script 
+nodemon app.js 
+
+Express Middle Ware
+
+https://expressjs.com/en/guide/writing-middleware.html
+
+
+
