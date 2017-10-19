@@ -1,20 +1,29 @@
 var express = require('express');
+var bodyParser = require('body-parser');
+var multer = require('multer');
+var upload = multer();
 var app = express();
 
-//First middleware before response is sent
-app.use(function(req, res, next){
-   console.log("Start");
-   next();
+app.get('/', function(req, res){
+   res.render('form');
 });
 
-//Route handler
-app.get('/', function(req, res, next){
-   res.send("Middle");
-   next();
-});
+app.set('view engine', 'pug');
+app.set('views', './views');
 
-app.use('/', function(req, res){
-   console.log('End');
-});
+// for parsing application/json
+app.use(bodyParser.json()); 
 
+// for parsing application/xwww-
+app.use(bodyParser.urlencoded({ extended: true })); 
+//form-urlencoded
+
+// for parsing multipart/form-data
+app.use(upload.array()); 
+app.use(express.static('public'));
+
+app.post('/', function(req, res){
+   console.log(req.body);
+   res.send("recieved your request!");
+});
 app.listen(3000);
